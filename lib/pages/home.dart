@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
+import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:life_history_mobile/models/life_entry.dart';
 import 'package:life_history_mobile/models/life_entry_activity.dart';
 import 'package:life_history_mobile/widgets/life_entry_widget.dart';
@@ -9,39 +10,93 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => new _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  //Create test data
-  final List<LifeEntryWidget> _entries = <LifeEntryWidget>[
-    new LifeEntryWidget(new LifeEntry(
-        startTime: new TimeOfDay(hour: 8, minute: 0),
-        endTime: null,
-        life_entry_activities: <LifeEntryActivity>[
-          new LifeEntryActivity(activity: "Réveil", description: ""),
-        ])),
-    new LifeEntryWidget(new LifeEntry(
-        startTime: new TimeOfDay(hour: 9, minute: 45),
-        endTime: new TimeOfDay(hour: 10, minute: 30),
-        life_entry_activities: <LifeEntryActivity>[
-          new LifeEntryActivity(
-              activity: "Ferme O-Lac",
-              description: "Aller voir parents à Josy"),
-        ])),
-    new LifeEntryWidget(new LifeEntry(
-        startTime: new TimeOfDay(hour: 13, minute: 55),
-        endTime: null,
-        life_entry_activities: <LifeEntryActivity>[
-          new LifeEntryActivity(
-              activity: "Croissants",
-              description: "Pâtisserie Mergeay",
-              quantity: 3,
-              rating: 7),
-          new LifeEntryActivity(
-              activity: "Frittes", description: "McDo", quantity: 1, rating: 8)
-        ])),
-  ];
+class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+  AnimationController _createAnimationController() {
+    return new AnimationController(
+      duration: new Duration(milliseconds: 500),
+      vsync: this,
+    );
+  }
+
+  List<LifeEntryWidget> _entries = null;
 
   @override
   Widget build(BuildContext context) {
+    //Create test data
+    _entries = <LifeEntryWidget>[
+      new LifeEntryWidget(
+          new LifeEntry(
+              startTime: new TimeOfDay(hour: 8, minute: 0),
+              endTime: null,
+              life_entry_activities: <LifeEntryActivity>[
+                new LifeEntryActivity(activity: "Réveil", description: ""),
+              ]),
+          _createAnimationController()),
+      new LifeEntryWidget(
+          new LifeEntry(
+              startTime: new TimeOfDay(hour: 9, minute: 45),
+              endTime: new TimeOfDay(hour: 10, minute: 30),
+              life_entry_activities: <LifeEntryActivity>[
+                new LifeEntryActivity(
+                    activity: "Ferme O-Lac",
+                    description: "Aller voir parents à Josy"),
+              ]),
+          _createAnimationController()),
+      new LifeEntryWidget(
+          new LifeEntry(
+              startTime: new TimeOfDay(hour: 13, minute: 55),
+              endTime: null,
+              life_entry_activities: <LifeEntryActivity>[
+                new LifeEntryActivity(
+                    activity: "Croissants",
+                    description: "Pâtisserie Mergeay",
+                    quantity: 3,
+                    rating: 7),
+                new LifeEntryActivity(
+                    activity: "Frittes",
+                    description: "McDo",
+                    quantity: 1,
+                    rating: 8)
+              ]),
+          _createAnimationController()),
+      new LifeEntryWidget(
+          new LifeEntry(
+              startTime: new TimeOfDay(hour: 19, minute: 22),
+              endTime: null,
+              life_entry_activities: <LifeEntryActivity>[
+                new LifeEntryActivity(
+                  activity: "PlayerUnknown's Battleground",
+                  description: "",
+                ),
+                new LifeEntryActivity(
+                  activity: "Steeven Thériault",
+                  description: "Discord",
+                )
+              ]),
+          _createAnimationController()),
+      new LifeEntryWidget(
+          new LifeEntry(
+              startTime: new TimeOfDay(hour: 19, minute: 22),
+              endTime: null,
+              life_entry_activities: <LifeEntryActivity>[
+                new LifeEntryActivity(
+                  activity: "Jessica Jones",
+                  description: "S1E5",
+                  quantity: 1,
+                  rating: 7,
+                ),
+              ]),
+          _createAnimationController()),
+    ];
+
+    int duration = 0;
+
+    for (var entry in _entries) {
+      new Timer(new Duration(milliseconds: duration),
+          entry.animationController.forward);
+      duration += 100;
+    }
+
     return new Container(
         child: new Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,5 +134,12 @@ class _HomePageState extends State<HomePage> {
               colors: <Color>[Theme.of(context).backgroundColor, Colors.white],
               begin: FractionalOffset.topLeft),
         ));
+  }
+
+  @override
+  void dispose() {
+    for (var entry in _entries) entry.animationController.dispose();
+
+    super.dispose();
   }
 }
