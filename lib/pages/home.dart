@@ -53,7 +53,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       duration += 100;
     }
 
-    return new Container(
+    return new Scaffold(
+      body: new Container(
         child: new Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -70,7 +71,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           gradient: new LinearGradient(
               colors: <Color>[Theme.of(context).backgroundColor, Colors.white],
               begin: FractionalOffset.topLeft),
-        ));
+        ),
+      ),
+      floatingActionButton:
+          new FloatingActionButton(child: new Icon(Icons.add), onPressed: null),
+    );
   }
 
   @override
@@ -149,6 +154,30 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   description: "S1E5",
                   quantity: 1,
                   rating: 7,
+                ),
+              ]),
+          _createAnimationController()),
+      new LifeEntryWidget(
+          new LifeEntry(
+              startTime: new TimeOfDay(hour: 21, minute: 44),
+              endTime: null,
+              life_entry_activities: <LifeEntryActivity>[
+                new LifeEntryActivity(
+                  activity: "Pringles",
+                  description: "Sel et vinaigre",
+                  quantity: 1,
+                  rating: 8,
+                ),
+              ]),
+          _createAnimationController()),
+      new LifeEntryWidget(
+          new LifeEntry(
+              startTime: new TimeOfDay(hour: 23, minute: 24),
+              endTime: null,
+              life_entry_activities: <LifeEntryActivity>[
+                new LifeEntryActivity(
+                  activity: "Dans le lit",
+                  description: "Cell + Dormir",
                 ),
               ]),
           _createAnimationController()),

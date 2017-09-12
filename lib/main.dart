@@ -50,6 +50,7 @@ class AppPageState extends State<AppPage> with TickerProviderStateMixin {
         appBar: new AppBar(
           title: const Text('Life History'),
         ),
+        primary: true,
         body: _currentPage,
         drawer: new Drawer(
           child: new Container(
