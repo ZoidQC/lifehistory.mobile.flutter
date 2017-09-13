@@ -11,7 +11,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
-  List<LifeEntryWidget> _entries = null;
+  List<LifeEntryWidget> _entries = [];
 
   @override
   Widget build(BuildContext context) {
@@ -29,13 +29,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               child: new CircleAvatar(child: new Text('28')),
             ),
             new Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  new Text("August 28, 2017",
-                      style: Theme.of(context).textTheme.title),
-                  new Text("Monday",
-                      style: Theme.of(context).textTheme.caption),
-                ])
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                new Text("August 28, 2017",
+                    style: Theme.of(context).textTheme.title),
+                new Text("Monday", style: Theme.of(context).textTheme.caption),
+              ],
+            )
           ],
         ),
       ),
@@ -54,28 +54,31 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     }
 
     return new Container(
-        child: new Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            new Flexible(
-              child: new ListView.builder(
-                padding: new EdgeInsets.all(8.0),
-                itemBuilder: (_, int index) => _listViewItems[index],
-                itemCount: _listViewItems.length,
-              ),
-            )
-          ],
-        ),
-        decoration: new BoxDecoration(
-          gradient: new LinearGradient(
-              colors: <Color>[Theme.of(context).backgroundColor, Colors.white],
-              begin: FractionalOffset.topLeft),
-        ));
+      child: new Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          new Flexible(
+            child: new ListView.builder(
+              padding: new EdgeInsets.all(8.0),
+              itemBuilder: (_, int index) => _listViewItems[index],
+              itemCount: _listViewItems.length,
+            ),
+          )
+        ],
+      ),
+      decoration: new BoxDecoration(
+        gradient: new LinearGradient(
+            colors: <Color>[Theme.of(context).backgroundColor, Colors.white],
+            begin: FractionalOffset.topLeft),
+      ),
+    );
   }
 
   @override
   void dispose() {
-    for (var entry in _entries) entry.animationController.dispose();
+    for (var entry in _entries) {
+      entry.animationController.dispose();
+    }
 
     super.dispose();
   }
@@ -90,68 +93,78 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   List<LifeEntryWidget> createTestData() {
     return <LifeEntryWidget>[
       new LifeEntryWidget(
-          new LifeEntry(
-              startTime: new TimeOfDay(hour: 8, minute: 0),
-              endTime: null,
-              life_entry_activities: <LifeEntryActivity>[
-                new LifeEntryActivity(activity: "Réveil", description: ""),
-              ]),
-          _createAnimationController()),
+        new LifeEntry(
+          startTime: new TimeOfDay(hour: 8, minute: 0),
+          endTime: null,
+          lifeEntryActivities: <LifeEntryActivity>[
+            new LifeEntryActivity(activity: "Réveil", description: ""),
+          ],
+        ),
+        _createAnimationController(),
+      ),
       new LifeEntryWidget(
-          new LifeEntry(
-              startTime: new TimeOfDay(hour: 9, minute: 45),
-              endTime: new TimeOfDay(hour: 10, minute: 30),
-              life_entry_activities: <LifeEntryActivity>[
-                new LifeEntryActivity(
-                    activity: "Ferme O-Lac",
-                    description: "Aller voir parents à Josy"),
-              ]),
-          _createAnimationController()),
+        new LifeEntry(
+          startTime: new TimeOfDay(hour: 9, minute: 45),
+          endTime: new TimeOfDay(hour: 10, minute: 30),
+          lifeEntryActivities: <LifeEntryActivity>[
+            new LifeEntryActivity(
+                activity: "Ferme O-Lac",
+                description: "Aller voir parents à Josy"),
+          ],
+        ),
+        _createAnimationController(),
+      ),
       new LifeEntryWidget(
-          new LifeEntry(
-              startTime: new TimeOfDay(hour: 13, minute: 55),
-              endTime: null,
-              life_entry_activities: <LifeEntryActivity>[
-                new LifeEntryActivity(
-                    activity: "Croissants",
-                    description: "Pâtisserie Mergeay",
-                    quantity: 3,
-                    rating: 7),
-                new LifeEntryActivity(
-                    activity: "Frittes",
-                    description: "McDo",
-                    quantity: 1,
-                    rating: 8)
-              ]),
-          _createAnimationController()),
+        new LifeEntry(
+          startTime: new TimeOfDay(hour: 13, minute: 55),
+          endTime: null,
+          lifeEntryActivities: <LifeEntryActivity>[
+            new LifeEntryActivity(
+                activity: "Croissants",
+                description: "Pâtisserie Mergeay",
+                quantity: 3,
+                rating: 7),
+            new LifeEntryActivity(
+                activity: "Frittes",
+                description: "McDo",
+                quantity: 1,
+                rating: 8)
+          ],
+        ),
+        _createAnimationController(),
+      ),
       new LifeEntryWidget(
-          new LifeEntry(
-              startTime: new TimeOfDay(hour: 19, minute: 22),
-              endTime: null,
-              life_entry_activities: <LifeEntryActivity>[
-                new LifeEntryActivity(
-                  activity: "PlayerUnknown's Battleground",
-                  description: "",
-                ),
-                new LifeEntryActivity(
-                  activity: "Steeven Thériault",
-                  description: "Discord",
-                )
-              ]),
-          _createAnimationController()),
+        new LifeEntry(
+          startTime: new TimeOfDay(hour: 19, minute: 22),
+          endTime: null,
+          lifeEntryActivities: <LifeEntryActivity>[
+            new LifeEntryActivity(
+              activity: "PlayerUnknown's Battleground",
+              description: "",
+            ),
+            new LifeEntryActivity(
+              activity: "Steeven Thériault",
+              description: "Discord",
+            )
+          ],
+        ),
+        _createAnimationController(),
+      ),
       new LifeEntryWidget(
-          new LifeEntry(
-              startTime: new TimeOfDay(hour: 19, minute: 22),
-              endTime: null,
-              life_entry_activities: <LifeEntryActivity>[
-                new LifeEntryActivity(
-                  activity: "Jessica Jones",
-                  description: "S1E5",
-                  quantity: 1,
-                  rating: 7,
-                ),
-              ]),
-          _createAnimationController()),
+        new LifeEntry(
+          startTime: new TimeOfDay(hour: 19, minute: 22),
+          endTime: null,
+          lifeEntryActivities: <LifeEntryActivity>[
+            new LifeEntryActivity(
+              activity: "Jessica Jones",
+              description: "S1E5",
+              quantity: 1,
+              rating: 7,
+            ),
+          ],
+        ),
+        _createAnimationController(),
+      ),
     ];
   }
 }
