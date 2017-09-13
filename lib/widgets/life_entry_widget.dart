@@ -16,8 +16,8 @@ class LifeEntryWidget extends StatelessWidget {
 
     //Create activities widgets
     for (int i = 0; i < lifeEntry.lifeEntryActivities.length; i++) {
-      lifeEntryActivities.add(
-          new LifeEntryActivityWidget(lifeEntry.lifeEntryActivities[i]));
+      lifeEntryActivities
+          .add(new LifeEntryActivityWidget(lifeEntry.lifeEntryActivities[i]));
     }
 
     //Create hour text
