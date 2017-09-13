@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:life_history_mobile/models/life_entry_activity.dart';
 
 class LifeEntryActivityWidget extends StatelessWidget {
-  LifeEntryActivityWidget(this.life_entry_activity);
+  LifeEntryActivityWidget(this.lifeEntryActivity);
 
-  final LifeEntryActivity life_entry_activity;
+  final LifeEntryActivity lifeEntryActivity;
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +15,9 @@ class LifeEntryActivityWidget extends StatelessWidget {
     widgets.add(new Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        new Text(life_entry_activity.activity,
+        new Text(lifeEntryActivity.activity,
             style: Theme.of(context).textTheme.subhead),
-        new Text(life_entry_activity.description,
+        new Text(lifeEntryActivity.description,
             style: Theme.of(context).textTheme.caption),
       ],
     ));
@@ -27,11 +27,11 @@ class LifeEntryActivityWidget extends StatelessWidget {
       child: new Align(
         alignment: FractionalOffset.centerLeft,
         child: new Container(
-          child: life_entry_activity.quantity != null &&
-                  life_entry_activity.quantity > 1
+          child: lifeEntryActivity.quantity != null &&
+                  lifeEntryActivity.quantity > 1
               ? new CircleAvatar(
                   child: new Text(
-                    "${life_entry_activity.quantity}",
+                    "${lifeEntryActivity.quantity}",
                     style: new TextStyle(fontSize: 14.0),
                   ),
                   backgroundColor: Theme.of(context).backgroundColor,
@@ -44,14 +44,14 @@ class LifeEntryActivityWidget extends StatelessWidget {
     ));
 
     //Add rating if not null
-    if (life_entry_activity.rating != null) {
+    if (lifeEntryActivity.rating != null) {
       widgets.add(new Row(
         children: <Widget>[
           new Icon(
             Icons.star,
             color: Theme.of(context).backgroundColor,
           ),
-          new Text("${life_entry_activity.rating}"),
+          new Text("${lifeEntryActivity.rating}"),
         ],
       ));
     }

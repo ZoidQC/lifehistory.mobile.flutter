@@ -11,7 +11,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
-  List<LifeEntryWidget> _entries = null;
+  List<LifeEntryWidget> _entries = [];
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +93,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           new LifeEntry(
               startTime: new TimeOfDay(hour: 8, minute: 0),
               endTime: null,
-              life_entry_activities: <LifeEntryActivity>[
+              lifeEntryActivities: <LifeEntryActivity>[
                 new LifeEntryActivity(activity: "Réveil", description: ""),
               ]),
           _createAnimationController()),
@@ -101,7 +101,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           new LifeEntry(
               startTime: new TimeOfDay(hour: 9, minute: 45),
               endTime: new TimeOfDay(hour: 10, minute: 30),
-              life_entry_activities: <LifeEntryActivity>[
+              lifeEntryActivities: <LifeEntryActivity>[
                 new LifeEntryActivity(
                     activity: "Ferme O-Lac",
                     description: "Aller voir parents à Josy"),
@@ -111,7 +111,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           new LifeEntry(
               startTime: new TimeOfDay(hour: 13, minute: 55),
               endTime: null,
-              life_entry_activities: <LifeEntryActivity>[
+              lifeEntryActivities: <LifeEntryActivity>[
                 new LifeEntryActivity(
                     activity: "Croissants",
                     description: "Pâtisserie Mergeay",
@@ -128,7 +128,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           new LifeEntry(
               startTime: new TimeOfDay(hour: 19, minute: 22),
               endTime: null,
-              life_entry_activities: <LifeEntryActivity>[
+              lifeEntryActivities: <LifeEntryActivity>[
                 new LifeEntryActivity(
                   activity: "PlayerUnknown's Battleground",
                   description: "",
@@ -143,7 +143,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           new LifeEntry(
               startTime: new TimeOfDay(hour: 19, minute: 22),
               endTime: null,
-              life_entry_activities: <LifeEntryActivity>[
+              lifeEntryActivities: <LifeEntryActivity>[
                 new LifeEntryActivity(
                   activity: "Jessica Jones",
                   description: "S1E5",
