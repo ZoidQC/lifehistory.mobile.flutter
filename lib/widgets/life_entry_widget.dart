@@ -12,13 +12,11 @@ class LifeEntryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> lifeEntryActivities = <Widget>[];
-
     //Create activities widgets
-    for (int i = 0; i < lifeEntry.lifeEntryActivities.length; i++) {
-      lifeEntryActivities
-          .add(new LifeEntryActivityWidget(lifeEntry.lifeEntryActivities[i]));
-    }
+    var lifeEntryActivities = new List<Widget>.generate(
+      lifeEntry.lifeEntryActivities.length,
+      (int i) => new LifeEntryActivityWidget(lifeEntry.lifeEntryActivities[i]),
+    ).toList();
 
     //Create hour text
     var timeTextStyle = new TextStyle(
@@ -45,25 +43,27 @@ class LifeEntryWidget extends StatelessWidget {
       opacity: new CurvedAnimation(
           parent: animationController, curve: Curves.easeOut),
       child: new Card(
-          child: new Container(
-        margin: new EdgeInsets.all(12.0),
-        child: new Row(
-          children: <Widget>[
-            new Container(
-              margin: new EdgeInsets.only(right: 8.0),
-              child: new Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: timeWidgets),
-            ),
-            new Expanded(
+        child: new Container(
+          margin: const EdgeInsets.all(12.0),
+          child: new Row(
+            children: <Widget>[
+              new Container(
+                margin: const EdgeInsets.only(right: 8.0),
                 child: new Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: lifeEntryActivities,
-            )),
-          ],
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: timeWidgets),
+              ),
+              new Expanded(
+                child: new Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: lifeEntryActivities,
+                ),
+              ),
+            ],
+          ),
         ),
-      )),
+      ),
     );
   }
 }

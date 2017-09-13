@@ -18,7 +18,7 @@ class LifeHistoryApp extends StatelessWidget {
     return new MaterialApp(
       title: 'Life History',
       theme: new ThemeData(
-        primaryColor: new Color.fromARGB(255, 23, 138, 204),
+        primaryColor: const Color.fromARGB(255, 23, 138, 204),
       ),
       home: new AppPage(),
       routes: routes,
@@ -46,87 +46,88 @@ class AppPageState extends State<AppPage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        key: _scaffoldKey,
-        appBar: new AppBar(
-          title: const Text('Life History'),
-        ),
-        body: _currentPage,
-        drawer: new Drawer(
-          child: new Container(
-            decoration: new BoxDecoration(
-              gradient: new LinearGradient(colors: <Color>[
-                Theme.of(context).backgroundColor,
-                Colors.white
-              ], begin: FractionalOffset.topLeft),
-            ),
-            child: new ListView(
-              children: <Widget>[
-                new DrawerHeader(
-                  child: new Center(
-                    child: new Row(
-                      children: <Widget>[
-                        new Container(
-                          child: new FlutterLogo(),
-                          padding: new EdgeInsets.only(right: 16.0),
-                        ),
-                        new Text('Life History',
-                            style: Theme.of(context).textTheme.headline)
-                      ],
-                    ),
-                  ),
-                ),
-                new ClipRect(
-                  child: new Stack(
+      key: _scaffoldKey,
+      appBar: new AppBar(
+        title: const Text('Life History'),
+      ),
+      body: _currentPage,
+      drawer: new Drawer(
+        child: new Container(
+          decoration: new BoxDecoration(
+            gradient: new LinearGradient(colors: <Color>[
+              Theme.of(context).backgroundColor,
+              Colors.white
+            ], begin: FractionalOffset.topLeft),
+          ),
+          child: new ListView(
+            children: <Widget>[
+              new DrawerHeader(
+                child: new Center(
+                  child: new Row(
                     children: <Widget>[
-                      new Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: <Widget>[
-                          new ListTile(
-                            leading: new CircleAvatar(child: new Text('H')),
-                            title: new Text('Home'),
-                            onTap: () {
-                              setCurrentPage(new HomePage());
-                              Navigator.of(context).pop();
-                            },
-                          ),
-                          new ListTile(
-                            leading: new CircleAvatar(child: new Text('C')),
-                            title: new Text('Calendar'),
-                            onTap: () {
-                              setCurrentPage(new CalendarPage());
-                              Navigator.of(context).pop();
-                            },
-                          ),
-                          new ListTile(
-                            leading: new CircleAvatar(child: new Text('S')),
-                            title: new Text('Search'),
-                            onTap: () {},
-                          ),
-                          new Divider(),
-                          new Container(
-                              child: new Text("Tools",
-                                  style: Theme.of(context).textTheme.subhead),
-                              padding: new EdgeInsets.only(
-                                  top: 8.0, left: 16.0, bottom: 8.0)),
-                          new ListTile(
-                            leading: new CircleAvatar(child: new Text('AT')),
-                            title: new Text('Activity Types'),
-                            onTap: () {},
-                          ),
-                          new ListTile(
-                            leading: new CircleAvatar(child: new Text('A')),
-                            title: new Text('Activities'),
-                            onTap: () {},
-                          )
-                        ],
+                      new Container(
+                        child: const FlutterLogo(),
+                        padding: const EdgeInsets.only(right: 16.0),
                       ),
+                      new Text('Life History',
+                          style: Theme.of(context).textTheme.headline)
                     ],
                   ),
                 ),
-              ],
-            ),
+              ),
+              new ClipRect(
+                child: new Stack(
+                  children: <Widget>[
+                    new Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: <Widget>[
+                        new ListTile(
+                          leading: const CircleAvatar(child: const Text('H')),
+                          title: const Text('Home'),
+                          onTap: () {
+                            setCurrentPage(new HomePage());
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                        new ListTile(
+                          leading: const CircleAvatar(child: const Text('C')),
+                          title: const Text('Calendar'),
+                          onTap: () {
+                            setCurrentPage(new CalendarPage());
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                        new ListTile(
+                          leading: const CircleAvatar(child: const Text('S')),
+                          title: const Text('Search'),
+                          onTap: () {},
+                        ),
+                        new Divider(),
+                        new Container(
+                            child: new Text("Tools",
+                                style: Theme.of(context).textTheme.subhead),
+                            padding: const EdgeInsets.only(
+                                top: 8.0, left: 16.0, bottom: 8.0)),
+                        new ListTile(
+                          leading: const CircleAvatar(child: const Text('AT')),
+                          title: const Text('Activity Types'),
+                          onTap: () {},
+                        ),
+                        new ListTile(
+                          leading: const CircleAvatar(child: const Text('A')),
+                          title: const Text('Activities'),
+                          onTap: () {},
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
