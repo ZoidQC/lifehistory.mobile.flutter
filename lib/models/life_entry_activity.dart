@@ -1,9 +1,13 @@
 class LifeEntryActivity {
-  LifeEntryActivity(
-      {this.activity, this.description, this.quantity, this.rating});
+  LifeEntryActivity({
+    this.activity,
+    this.description,
+    this.quantity,
+    this.rating,
+  });
 
-  String activity;
-  String description;
-  int quantity;
-  int rating;
+  final String activity;
+  final String description;
+  final int quantity;
+  final int rating;
 }
