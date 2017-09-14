@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:life_history_mobile/models/life_entry.dart';
+import 'package:life_history_mobile/pages_navigation/life_entry_page.dart';
 import 'package:life_history_mobile/widgets/life_entry_activity_widget.dart';
 
 export 'package:life_history_mobile/widgets/life_entry_activity_widget.dart';
@@ -44,26 +45,32 @@ class LifeEntryWidget extends StatelessWidget {
     return new FadeTransition(
       opacity: new CurvedAnimation(
           parent: animationController, curve: Curves.easeOut),
-      child: new Card(
+      child: new GestureDetector(
+        onTap: () {
+          Navigator.of(context).pushNamed(LifeEntryPage.routeName);
+        },
+        child: new Card(
           child: new Container(
-        margin: new EdgeInsets.all(12.0),
-        child: new Row(
-          children: <Widget>[
-            new Container(
-              margin: new EdgeInsets.only(right: 8.0),
-              child: new Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: timeWidgets),
+            margin: new EdgeInsets.all(12.0),
+            child: new Row(
+              children: <Widget>[
+                new Container(
+                  margin: new EdgeInsets.only(right: 8.0),
+                  child: new Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: timeWidgets),
+                ),
+                new Expanded(
+                    child: new Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: life_entry_activities,
+                )),
+              ],
             ),
-            new Expanded(
-                child: new Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: life_entry_activities,
-            )),
-          ],
+          ),
         ),
-      )),
+      ),
     );
   }
 }
