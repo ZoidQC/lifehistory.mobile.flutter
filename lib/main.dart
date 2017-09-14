@@ -8,7 +8,7 @@ void main() {
 }
 
 class LifeHistoryApp extends StatelessWidget {
-  var routes = <String, WidgetBuilder>{
+  final routes = <String, WidgetBuilder>{
     //Register page for navigation here
     LifeEntryPage.routeName: (BuildContext context) => new LifeEntryPage(),
   };

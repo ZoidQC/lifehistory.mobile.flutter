@@ -6,40 +6,43 @@ import 'package:life_history_mobile/widgets/life_entry_activity_widget.dart';
 export 'package:life_history_mobile/widgets/life_entry_activity_widget.dart';
 
 class LifeEntryWidget extends StatelessWidget {
-  LifeEntryWidget(this.life_entry, this.animationController);
+  LifeEntryWidget(this.lifeEntry, this.animationController);
 
-  final LifeEntry life_entry;
+  final LifeEntry lifeEntry;
   final AnimationController animationController;
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> life_entry_activities = <Widget>[];
+    List<Widget> lifeEntryActivities = <Widget>[];
 
     //Create activities widgets
-    for (int i = 0; i < life_entry.life_entry_activities.length; i++) {
-      life_entry_activities.add(
-          new LifeEntryActivityWidget(life_entry.life_entry_activities[i]));
+    for (int i = 0; i < lifeEntry.lifeEntryActivities.length; i++) {
+      lifeEntryActivities
+          .add(new LifeEntryActivityWidget(lifeEntry.lifeEntryActivities[i]));
     }
 
     //Create hour text
     var timeTextStyle = new TextStyle(
-        fontSize: 14.0,
-        fontWeight: FontWeight.w500,
-        color: Theme.of(context).backgroundColor);
+      fontSize: 14.0,
+      fontWeight: FontWeight.w500,
+      color: Theme.of(context).backgroundColor,
+    );
 
     var timeWidgets = new List<Widget>();
 
-    if (life_entry.startTime != null) {
+    if (lifeEntry.startTime != null) {
       timeWidgets.add(new Text(
-          "${life_entry.startTime.hourLabel}:${life_entry.startTime
-              .minuteLabel}",
-          style: timeTextStyle));
+        "${lifeEntry.startTime.hourLabel}:${lifeEntry.startTime
+            .minuteLabel}",
+        style: timeTextStyle,
+      ));
     }
 
-    if (life_entry.endTime != null) {
+    if (lifeEntry.endTime != null) {
       timeWidgets.add(new Text(
-          "${life_entry.endTime.hourLabel}:${life_entry.endTime.minuteLabel}",
-          style: timeTextStyle));
+        "${lifeEntry.endTime.hourLabel}:${lifeEntry.endTime.minuteLabel}",
+        style: timeTextStyle,
+      ));
     }
 
     return new FadeTransition(
@@ -62,10 +65,11 @@ class LifeEntryWidget extends StatelessWidget {
                       children: timeWidgets),
                 ),
                 new Expanded(
-                    child: new Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: life_entry_activities,
-                )),
+                  child: new Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: lifeEntryActivities,
+                  ),
+                ),
               ],
             ),
           ),
