@@ -54,11 +54,11 @@ class LifeEntryWidget extends StatelessWidget {
         },
         child: new Card(
           child: new Container(
-            margin: new EdgeInsets.all(12.0),
+            margin: const EdgeInsets.all(12.0),
             child: new Row(
               children: <Widget>[
                 new Container(
-                  margin: new EdgeInsets.only(right: 8.0),
+                  margin: const EdgeInsets.only(right: 8.0),
                   child: new Column(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,

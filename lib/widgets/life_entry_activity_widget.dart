@@ -34,13 +34,13 @@ class LifeEntryActivityWidget extends StatelessWidget {
                 ? new CircleAvatar(
                     child: new Text(
                       "${lifeEntryActivity.quantity}",
-                      style: new TextStyle(fontSize: 14.0),
+                      style: const TextStyle(fontSize: 14.0),
                     ),
                     backgroundColor: Theme.of(context).backgroundColor,
                   )
                 : null,
             height: 22.0,
-            margin: new EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
+            margin: const EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
           ),
         ),
       ),
@@ -62,7 +62,7 @@ class LifeEntryActivityWidget extends StatelessWidget {
     }
 
     return new Container(
-      margin: new EdgeInsets.all(8.0),
+      margin: const EdgeInsets.all(8.0),
       child: new Row(
         children: widgets,
       ),

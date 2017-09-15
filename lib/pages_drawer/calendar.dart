@@ -19,7 +19,7 @@ class _CalendarPageState extends State<CalendarPage> {
                   firstDate: new DateTime(1990),
                   lastDate: new DateTime(2100));
             },
-            child: new Text(
+            child: const Text(
               'Show calendar',
             ),
           ),

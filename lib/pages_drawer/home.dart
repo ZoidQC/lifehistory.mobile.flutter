@@ -22,21 +22,26 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     //Add day header
     List<Widget> _listViewItems = <Widget>[
       new Container(
-        margin: new EdgeInsets.only(left: 16.0, top: 32.0, bottom: 16.0),
+        margin: const EdgeInsets.only(left: 16.0, top: 32.0, bottom: 16.0),
         child: new Row(
           children: <Widget>[
             new Container(
-              margin: new EdgeInsets.only(right: 16.0),
+              margin: const EdgeInsets.only(right: 16.0),
               child: new CircleAvatar(
-                child: new Text('28'),
+                child: const Text('28'),
               ),
             ),
             new Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                new Text("August 28, 2017",
-                    style: Theme.of(context).textTheme.title),
-                new Text("Monday", style: Theme.of(context).textTheme.caption),
+                new Text(
+                  "August 28, 2017",
+                  style: Theme.of(context).textTheme.title,
+                ),
+                new Text(
+                  "Monday",
+                  style: Theme.of(context).textTheme.caption,
+                ),
               ],
             )
           ],
@@ -68,7 +73,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           children: <Widget>[
             new Flexible(
               child: new ListView.builder(
-                padding: new EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8.0),
                 itemBuilder: (_, int index) => _listViewItems[index],
                 itemCount: _listViewItems.length,
               ),
@@ -82,7 +87,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         ),
       ),
       floatingActionButton: new FloatingActionButton(
-        child: new Icon(Icons.add),
+        child: const Icon(Icons.add),
         onPressed: () {
           Navigator.of(context).pushNamed(LifeEntryPage.routeName);
         },
