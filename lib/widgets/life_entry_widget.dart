@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:life_history_mobile/models/life_entry.dart';
-import 'package:life_history_mobile/pages_navigation/life_entry_page.dart';
+import 'package:life_history_mobile/utils/routing_assistant.dart';
 import 'package:life_history_mobile/widgets/life_entry_activity_widget.dart';
 
 export 'package:life_history_mobile/widgets/life_entry_activity_widget.dart';
@@ -50,7 +50,7 @@ class LifeEntryWidget extends StatelessWidget {
           parent: animationController, curve: Curves.easeOut),
       child: new GestureDetector(
         onTap: () {
-          Navigator.of(context).pushNamed(LifeEntryPage.routeName);
+          Navigator.of(context).push(RoutingAssistant.lifeEntryPage(lifeEntry));
         },
         child: new Card(
           child: new Container(

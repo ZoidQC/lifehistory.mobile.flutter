@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:life_history_mobile/models/life_entry.dart';
 import 'package:life_history_mobile/models/life_entry_activity.dart';
-import 'package:life_history_mobile/pages_navigation/life_entry_page.dart';
+import 'package:life_history_mobile/utils/routing_assistant.dart';
 import 'package:life_history_mobile/widgets/life_entry_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -89,7 +89,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       floatingActionButton: new FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
-          Navigator.of(context).pushNamed(LifeEntryPage.routeName);
+          Navigator.of(context).push(RoutingAssistant.lifeEntryPage(null));
         },
       ),
     );

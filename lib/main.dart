@@ -1,18 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:life_history_mobile/pages_drawer/calendar.dart';
 import 'package:life_history_mobile/pages_drawer/home.dart';
-import 'package:life_history_mobile/pages_navigation/life_entry_page.dart';
 
 void main() {
   runApp(new LifeHistoryApp());
 }
 
 class LifeHistoryApp extends StatelessWidget {
-  final routes = <String, WidgetBuilder>{
-    //Register page for navigation here
-    LifeEntryPage.routeName: (BuildContext context) => new LifeEntryPage(),
-  };
-
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
@@ -20,8 +14,7 @@ class LifeHistoryApp extends StatelessWidget {
       theme: new ThemeData(
         primaryColor: const Color.fromARGB(255, 23, 138, 204),
       ),
-      home: new AppPage(),
-      routes: routes,
+      home: new AppPage()
     );
   }
 }
