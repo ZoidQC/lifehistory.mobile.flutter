@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:life_history_mobile/pages_drawer/calendar.dart';
 import 'package:life_history_mobile/pages_drawer/home.dart';
+import 'package:life_history_mobile/pages_navigation/login_page.dart';
 
 void main() {
   runApp(new LifeHistoryApp());
@@ -10,12 +11,11 @@ class LifeHistoryApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: 'Life History',
-      theme: new ThemeData(
-        primaryColor: const Color.fromARGB(255, 23, 138, 204),
-      ),
-      home: new AppPage()
-    );
+        title: 'Life History',
+        theme: new ThemeData(
+          primaryColor: const Color.fromARGB(255, 23, 138, 204),
+        ),
+        home: new AppPage());
   }
 }
 
@@ -28,7 +28,7 @@ class AppPage extends StatefulWidget {
 
 class AppPageState extends State<AppPage> with TickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  Widget _currentPage = new HomePage();
+  Widget _currentPage = new LoginPage();
 
   void setCurrentPage(Widget page) {
     setState(() {
