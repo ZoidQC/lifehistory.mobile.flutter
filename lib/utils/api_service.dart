@@ -21,7 +21,7 @@ class RequestResponse {
 class ApiService {
   static const apiUrl = "https://lifehistory.ca:5000/api/";
 
-  Future<RequestResponse> executeRequest(
+  static Future<RequestResponse> executeRequest(
       String method, String partUrl, Map<String, String> data,
       {HttpClientBasicCredentials credentials}) async {
     HttpClient client = new HttpClient();

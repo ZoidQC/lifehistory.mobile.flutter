@@ -11,8 +11,7 @@ class LoginPage extends StatelessWidget {
       return "1234";
     });
 
-    ApiService apiService = new ApiService();
-    apiService
+    ApiService
         .executeRequest(HttpMethod.post, "authenticate", data)
         .then((requestResponse) {
       Map test = requestResponse.data;
@@ -30,10 +29,35 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     _testHttpCall();
 
-    return new Container(
-      child: new Text(
-        "Login",
-      ),
+    return new Form(
+        child: new ListView(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          children: <Widget>[
+            new TextFormField(
+              decoration: const InputDecoration(
+                icon: const Icon(Icons.email),
+                hintText: 'What is your email/username?',
+                labelText: 'Username',
+              ),
+            ),
+            new TextFormField(
+              decoration: const InputDecoration(
+                  icon: const Icon(Icons.lock),
+                  hintText: 'Enter your password here',
+                  labelText: 'Password',
+              ),
+              obscureText: true,
+            ),
+            new Container(
+              padding: const EdgeInsets.all(20.0),
+              alignment: const FractionalOffset(0.5, 0.5),
+              child: new RaisedButton(
+                child: const Text('LOG IN'),
+                onPressed: null,
+              ),
+            ),
+          ],
+        )
     );
   }
 }
