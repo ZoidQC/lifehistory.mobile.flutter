@@ -31,33 +31,42 @@ class LoginPage extends StatelessWidget {
 
     return new Form(
         child: new ListView(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          children: <Widget>[
-            new TextFormField(
-              decoration: const InputDecoration(
-                icon: const Icon(Icons.email),
-                hintText: 'What is your email/username?',
-                labelText: 'Username',
-              ),
-            ),
-            new TextFormField(
-              decoration: const InputDecoration(
-                  icon: const Icon(Icons.lock),
-                  hintText: 'Enter your password here',
-                  labelText: 'Password',
-              ),
-              obscureText: true,
-            ),
-            new Container(
-              padding: const EdgeInsets.all(20.0),
-              alignment: const FractionalOffset(0.5, 0.5),
-              child: new RaisedButton(
-                child: const Text('LOG IN'),
-                onPressed: null,
-              ),
-            ),
-          ],
-        )
-    );
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      children: <Widget>[
+        new Container(
+          child: new Image(
+            image: const AssetImage('graphics/lh_logo.png'),
+          ),
+          height: 200.0,
+          margin: const EdgeInsets.only(
+            top: 40.0,
+            bottom: 40.0,
+          ),
+        ),
+        new TextFormField(
+          decoration: const InputDecoration(
+            icon: const Icon(Icons.email),
+            hintText: 'What is your email/username?',
+            labelText: 'Username',
+          ),
+        ),
+        new TextFormField(
+          decoration: const InputDecoration(
+            icon: const Icon(Icons.lock),
+            hintText: 'Enter your password here',
+            labelText: 'Password',
+          ),
+          obscureText: true,
+        ),
+        new Container(
+          padding: const EdgeInsets.all(20.0),
+          alignment: const FractionalOffset(0.5, 0.5),
+          child: new RaisedButton(
+            child: const Text('LOG IN'),
+            onPressed: null,
+          ),
+        ),
+      ],
+    ));
   }
 }

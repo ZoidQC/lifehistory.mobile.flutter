@@ -7,14 +7,22 @@ void main() {
   runApp(new LifeHistoryApp());
 }
 
+final ThemeData _kGalleryLightTheme = new ThemeData(
+  brightness: Brightness.light,
+  primaryColor: const Color.fromARGB(255, 23, 138, 204),
+);
+
+final ThemeData _kGalleryDarkTheme = new ThemeData(
+  brightness: Brightness.dark,
+  primaryColor: const Color.fromARGB(255, 38, 185, 190),
+);
+
 class LifeHistoryApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
         title: 'Life History',
-        theme: new ThemeData(
-          primaryColor: const Color.fromARGB(255, 23, 138, 204),
-        ),
+        theme: _kGalleryDarkTheme,
         home: new AppPage());
   }
 }
