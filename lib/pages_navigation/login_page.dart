@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:life_history_mobile/utils/api_service.dart';
 
 class LoginPage extends StatelessWidget {
-  _testHttpCall() {
+  _testHttpCall(BuildContext context, String username, String password) {
     Map<String, String> data = new Map();
     data.putIfAbsent("username", () {
-      return "test";
+      return username;
     });
     data.putIfAbsent("password", () {
-      return "1234";
+      return password;
     });
 
     ApiService
@@ -18,17 +18,39 @@ class LoginPage extends StatelessWidget {
       final authenticateResult = test["authenticate_result"];
 
       if (authenticateResult == 1) {
-        print("Yes!");
+        showDialog(
+          context: context,
+          child: new AlertDialog(
+            title: new Text("Login"),
+            content: new Text("Login success!"),
+          ),
+        );
       } else {
-        print("No :(");
+        showDialog(
+          context: context,
+          child: new AlertDialog(
+            title: new Text("Login"),
+            content: new Text("Wrong username or password."),
+          ),
+        );
       }
     });
   }
 
+  final GlobalKey<FormFieldState<String>> _usernameFieldKey =
+      new GlobalKey<FormFieldState<String>>();
+  final GlobalKey<FormFieldState<String>> _passwordFieldKey =
+      new GlobalKey<FormFieldState<String>>();
+
+  void _login(BuildContext context) {
+    final FormFieldState<String> usernameField = _usernameFieldKey.currentState;
+    final FormFieldState<String> passwordField = _passwordFieldKey.currentState;
+
+    _testHttpCall(context, usernameField.value, passwordField.value);
+  }
+
   @override
   Widget build(BuildContext context) {
-    _testHttpCall();
-
     return new Form(
         child: new ListView(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -44,6 +66,7 @@ class LoginPage extends StatelessWidget {
           ),
         ),
         new TextFormField(
+          key: _usernameFieldKey,
           decoration: const InputDecoration(
             icon: const Icon(Icons.email),
             hintText: 'What is your email/username?',
@@ -51,6 +74,7 @@ class LoginPage extends StatelessWidget {
           ),
         ),
         new TextFormField(
+          key: _passwordFieldKey,
           decoration: const InputDecoration(
             icon: const Icon(Icons.lock),
             hintText: 'Enter your password here',
@@ -63,7 +87,7 @@ class LoginPage extends StatelessWidget {
           alignment: const FractionalOffset(0.5, 0.5),
           child: new RaisedButton(
             child: const Text('LOG IN'),
-            onPressed: null,
+            onPressed: () { _login(context); },
           ),
         ),
       ],
