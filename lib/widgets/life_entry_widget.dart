@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:life_history_mobile/models/life_entry.dart';
+import 'package:life_history_mobile/models/life_entry_old.dart';
 import 'package:life_history_mobile/utils/routing_assistant.dart';
 import 'package:life_history_mobile/widgets/life_entry_activity_widget.dart';
 
@@ -8,7 +8,7 @@ export 'package:life_history_mobile/widgets/life_entry_activity_widget.dart';
 class LifeEntryWidget extends StatelessWidget {
   LifeEntryWidget(this.lifeEntry, this.animationController);
 
-  final LifeEntry lifeEntry;
+  final LifeEntryOld lifeEntry;
   final AnimationController animationController;
 
   @override
@@ -32,15 +32,15 @@ class LifeEntryWidget extends StatelessWidget {
 
     if (lifeEntry.startTime != null) {
       timeWidgets.add(new Text(
-        "${lifeEntry.startTime.hourLabel}:${lifeEntry.startTime
-            .minuteLabel}",
+        "${lifeEntry.startTime.hour}:${lifeEntry.startTime
+            .minute}",
         style: timeTextStyle,
       ));
     }
 
     if (lifeEntry.endTime != null) {
       timeWidgets.add(new Text(
-        "${lifeEntry.endTime.hourLabel}:${lifeEntry.endTime.minuteLabel}",
+        "${lifeEntry.endTime.hour}:${lifeEntry.endTime.minute}",
         style: timeTextStyle,
       ));
     }

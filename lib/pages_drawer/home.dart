@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:life_history_mobile/models/life_entry.dart';
-import 'package:life_history_mobile/models/life_entry_activity.dart';
+import 'package:life_history_mobile/models/life_entry_old.dart';
+import 'package:life_history_mobile/models/life_entry_activity_old.dart';
 import 'package:life_history_mobile/utils/routing_assistant.dart';
 import 'package:life_history_mobile/widgets/life_entry_widget.dart';
 
@@ -112,35 +112,35 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   List<LifeEntryWidget> createTestData() {
     return <LifeEntryWidget>[
       new LifeEntryWidget(
-          new LifeEntry(
+          new LifeEntryOld(
               startTime: new TimeOfDay(hour: 8, minute: 0),
               endTime: null,
-              lifeEntryActivities: <LifeEntryActivity>[
-                new LifeEntryActivity(activity: "Réveil", description: ""),
+              lifeEntryActivities: <LifeEntryActivityOld>[
+                new LifeEntryActivityOld(activity: "Réveil", description: ""),
               ]),
           _createAnimationController()),
       new LifeEntryWidget(
-          new LifeEntry(
+          new LifeEntryOld(
             startTime: new TimeOfDay(hour: 9, minute: 45),
             endTime: new TimeOfDay(hour: 10, minute: 30),
-            lifeEntryActivities: <LifeEntryActivity>[
-              new LifeEntryActivity(
+            lifeEntryActivities: <LifeEntryActivityOld>[
+              new LifeEntryActivityOld(
                   activity: "Ferme O-Lac",
                   description: "Aller voir parents à Josy"),
             ],
           ),
           _createAnimationController()),
       new LifeEntryWidget(
-          new LifeEntry(
+          new LifeEntryOld(
             startTime: new TimeOfDay(hour: 13, minute: 55),
             endTime: null,
-            lifeEntryActivities: <LifeEntryActivity>[
-              new LifeEntryActivity(
+            lifeEntryActivities: <LifeEntryActivityOld>[
+              new LifeEntryActivityOld(
                   activity: "Croissants",
                   description: "Pâtisserie Mergeay",
                   quantity: 3,
                   rating: 7),
-              new LifeEntryActivity(
+              new LifeEntryActivityOld(
                   activity: "Frittes",
                   description: "McDo",
                   quantity: 1,
@@ -149,15 +149,15 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           ),
           _createAnimationController()),
       new LifeEntryWidget(
-          new LifeEntry(
+          new LifeEntryOld(
             startTime: new TimeOfDay(hour: 19, minute: 22),
             endTime: null,
-            lifeEntryActivities: <LifeEntryActivity>[
-              new LifeEntryActivity(
+            lifeEntryActivities: <LifeEntryActivityOld>[
+              new LifeEntryActivityOld(
                 activity: "PlayerUnknown's Battleground",
                 description: "",
               ),
-              new LifeEntryActivity(
+              new LifeEntryActivityOld(
                 activity: "Steeven Thériault",
                 description: "Discord",
               )
@@ -165,11 +165,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           ),
           _createAnimationController()),
       new LifeEntryWidget(
-          new LifeEntry(
+          new LifeEntryOld(
             startTime: new TimeOfDay(hour: 19, minute: 22),
             endTime: null,
-            lifeEntryActivities: <LifeEntryActivity>[
-              new LifeEntryActivity(
+            lifeEntryActivities: <LifeEntryActivityOld>[
+              new LifeEntryActivityOld(
                 activity: "Jessica Jones",
                 description: "S1E5",
                 quantity: 1,
@@ -179,11 +179,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           ),
           _createAnimationController()),
       new LifeEntryWidget(
-          new LifeEntry(
+          new LifeEntryOld(
             startTime: new TimeOfDay(hour: 21, minute: 44),
             endTime: null,
-            lifeEntryActivities: <LifeEntryActivity>[
-              new LifeEntryActivity(
+            lifeEntryActivities: <LifeEntryActivityOld>[
+              new LifeEntryActivityOld(
                 activity: "Pringles",
                 description: "Sel et vinaigre",
                 quantity: 1,
@@ -193,11 +193,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           ),
           _createAnimationController()),
       new LifeEntryWidget(
-          new LifeEntry(
+          new LifeEntryOld(
             startTime: new TimeOfDay(hour: 23, minute: 24),
             endTime: null,
-            lifeEntryActivities: <LifeEntryActivity>[
-              new LifeEntryActivity(
+            lifeEntryActivities: <LifeEntryActivityOld>[
+              new LifeEntryActivityOld(
                 activity: "Dans le lit",
                 description: "Cell + Dormir",
               ),

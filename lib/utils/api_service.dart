@@ -41,7 +41,7 @@ class ApiService {
     }
 
     print(
-        "[ApiService] executeRequest Method (${method}) Url (${fullUrl}) Data(${data}) Authenticated (${credentials !=
+        "[ApiService] executeRequest Method ($method) Url ($fullUrl) Data($data) Authenticated (${credentials !=
             null})");
 
     final response = await request.close();
@@ -49,7 +49,7 @@ class ApiService {
 
     await for (var contents in response.transform(UTF8.decoder)) {
       print("[ApiService] response statusCode (${response
-          .statusCode}) contents (${contents})");
+          .statusCode}) contents ($contents)");
 
       responseData = JSON.decode(contents);
     }

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:life_history_mobile/models/life_entry_activity.dart';
+import 'package:life_history_mobile/models/life_entry_activity_old.dart';
 
 class LifeEntryActivityWidget extends StatelessWidget {
   LifeEntryActivityWidget(this.lifeEntryActivity);
 
-  final LifeEntryActivity lifeEntryActivity;
+  final LifeEntryActivityOld lifeEntryActivity;
 
   @override
   Widget build(BuildContext context) {
