@@ -1,30 +1,34 @@
-library life_history_mobile.models.life_entry;
+import 'package:flutter/material.dart';
+import 'package:life_history_mobile/models/life_entry_base.dart';
+import 'package:life_history_mobile/utils/time_of_day_converter.dart';
 
-import 'package:json_annotation/json_annotation.dart';
-import 'package:life_history_mobile/models/life_entry_activity.dart';
+class LifeEntry extends LifeEntryBase {
+  LifeEntry(LifeEntryBase lifeEntry)
+      : super(
+            id: lifeEntry.id,
+            dayId: lifeEntry.dayId,
+            lifeEntryActivities: lifeEntry.lifeEntryActivities,
+            startTimeString: lifeEntry.startTimeString,
+            endTimeString: lifeEntry.endTimeString);
 
-part 'life_entry.g.dart';
+  TimeOfDay get startTime {
+    return convertStringToTimeOfDay(startTimeString);
+  }
 
-@JsonSerializable()
-class LifeEntry extends Object with _$LifeEntrySerializerMixin {
-  final int id;
-  @JsonKey(name: 'day_id')
-  final int dayId;
-  @JsonKey(name: 'start_time')
-  final DateTime startTime;
-  @JsonKey(name: 'end_time')
-  final DateTime endTime;
-  @JsonKey(name: 'life_entry_activities')
-  final List<LifeEntryActivity> lifeEntryActivities;
+  TimeOfDay get endTime {
+    return convertStringToTimeOfDay(endTimeString);
+  }
 
-  LifeEntry({
-    this.id,
-    this.dayId,
-    this.startTime,
-    this.endTime,
-    this.lifeEntryActivities,
-  });
+  void set startTime(TimeOfDay value) {
+    startTimeString = convertTimeOfDayToString(value);
+  }
 
-  factory LifeEntry.fromJson(Map<String, dynamic> json) =>
-      _$LifeEntryFromJson(json);
+  void set endTime(TimeOfDay value) {
+    endTimeString = convertTimeOfDayToString(value);
+  }
+
+  factory LifeEntry.fromJson(Map<String, dynamic> json) {
+    final lifeEntry = new LifeEntryBase.fromJson(json);
+    return new LifeEntry(lifeEntry);
+  }
 }
