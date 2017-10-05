@@ -10,7 +10,7 @@ LifeEntryActivity _$LifeEntryActivityFromJson(Map<String, dynamic> json) =>
     new LifeEntryActivity(
         id: json['id'] as int,
         description: json['description'] as String,
-        life_entry_id: json['life_entry_id'] as int,
+        lifeEntryId: json['life_entry_id'] as int,
         quantity: (json['quantity'] as num)?.toDouble(),
         rating: json['rating'] as int,
         activity: json['activity'] == null
@@ -20,14 +20,14 @@ LifeEntryActivity _$LifeEntryActivityFromJson(Map<String, dynamic> json) =>
 abstract class _$LifeEntryActivitySerializerMixin {
   int get id;
   String get description;
-  int get life_entry_id;
+  int get lifeEntryId;
   double get quantity;
   int get rating;
   Activity get activity;
   Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,
         'description': description,
-        'life_entry_id': life_entry_id,
+        'life_entry_id': lifeEntryId,
         'quantity': quantity,
         'rating': rating,
         'activity': activity

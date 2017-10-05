@@ -19,11 +19,11 @@ class LifeEntry extends LifeEntryBase {
     return convertStringToTimeOfDay(endTimeString);
   }
 
-  void set startTime(TimeOfDay value) {
+  set startTime(TimeOfDay value) {
     startTimeString = convertTimeOfDayToString(value);
   }
 
-  void set endTime(TimeOfDay value) {
+  set endTime(TimeOfDay value) {
     endTimeString = convertTimeOfDayToString(value);
   }
 

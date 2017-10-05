@@ -3,37 +3,16 @@ import 'package:life_history_mobile/utils/api_service.dart';
 
 class LoginPage extends StatelessWidget {
   _testHttpCall(BuildContext context, String username, String password) {
-    Map<String, String> data = new Map();
-    data.putIfAbsent("username", () {
-      return username;
-    });
-    data.putIfAbsent("password", () {
-      return password;
-    });
-
-    ApiService
-        .executeRequest(HttpMethod.post, "authenticate", data)
-        .then((requestResponse) {
-      Map test = requestResponse.data;
-      final authenticateResult = test["authenticate_result"];
-
-      if (authenticateResult == 1) {
-        showDialog(
-          context: context,
-          child: new AlertDialog(
-            title: new Text("Login"),
-            content: new Text("Login success!"),
-          ),
-        );
-      } else {
-        showDialog(
-          context: context,
-          child: new AlertDialog(
-            title: new Text("Login"),
-            content: new Text("Wrong username or password."),
-          ),
-        );
-      }
+    ApiService.login(username, password).then((isLoginSuccessful) {
+      showDialog(
+        context: context,
+        child: new AlertDialog(
+          title: new Text("Login"),
+          content: isLoginSuccessful
+              ? new Text("Login success!")
+              : new Text("Wrong username or password."),
+        ),
+      );
     });
   }
 
@@ -87,7 +66,9 @@ class LoginPage extends StatelessWidget {
           alignment: const FractionalOffset(0.5, 0.5),
           child: new RaisedButton(
             child: const Text('LOG IN'),
-            onPressed: () { _login(context); },
+            onPressed: () {
+              _login(context);
+            },
           ),
         ),
       ],

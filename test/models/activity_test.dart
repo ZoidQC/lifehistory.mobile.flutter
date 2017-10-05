@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:life_history_mobile/models.dart';
+import 'package:life_history_mobile/models/activity.dart';
 
 main() {
   test('JSON deserialization works for Activity', () {

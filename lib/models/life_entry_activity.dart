@@ -9,7 +9,8 @@ part 'life_entry_activity.g.dart';
 class LifeEntryActivity extends Object with _$LifeEntryActivitySerializerMixin {
   final int id;
   final String description;
-  final int life_entry_id;
+  @JsonKey(name: 'life_entry_id')
+  final int lifeEntryId;
   final double quantity;
   final int rating;
   final Activity activity;
@@ -17,7 +18,7 @@ class LifeEntryActivity extends Object with _$LifeEntryActivitySerializerMixin {
   LifeEntryActivity({
     this.id,
     this.description,
-    this.life_entry_id,
+    this.lifeEntryId,
     this.quantity,
     this.rating,
     this.activity,
