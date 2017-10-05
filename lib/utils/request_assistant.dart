@@ -19,29 +19,29 @@ class RequestResponse {
 }
 
 class RequestAssistant {
-  static const apiUrl = "https://lifehistory.ca:5000/api/";
+  static const _jsonContentType = "application/json";
 
   static Future<RequestResponse> executeRequest(
-      String method, String partUrl, Map<String, String> data,
+      String method, String url, Map<String, String> data,
       {HttpClientBasicCredentials credentials}) async {
     HttpClient client = new HttpClient();
     client.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
 
+    final uri = Uri.parse(url);
+    final request = await client.openUrl(method, uri);
+
     if (credentials != null) {
-      client.addCredentials(Uri.parse(apiUrl), "", credentials);
+      client.addCredentials(uri, null, credentials);
     }
 
-    String fullUrl = apiUrl + partUrl;
-    final request = await client.openUrl(method, Uri.parse(fullUrl));
-
     if (data != null) {
-      request.headers.add(HttpHeaders.CONTENT_TYPE, "application/json");
+      request.headers.add(HttpHeaders.CONTENT_TYPE, _jsonContentType);
       request.write(JSON.encode(data));
     }
 
     print(
-        "[ApiService] executeRequest Method ($method) Url ($fullUrl) Data($data) Authenticated (${credentials !=
+        "[ApiService] executeRequest Method ($method) Url ($url) Data($data) Authenticated (${credentials !=
             null})");
 
     final response = await request.close();
@@ -51,7 +51,9 @@ class RequestAssistant {
       print("[ApiService] response statusCode (${response
           .statusCode}) contents ($contents)");
 
-      responseData = JSON.decode(contents);
+      if (response.headers.contentType.value == _jsonContentType) {
+        responseData = JSON.decode(contents);
+      }
     }
 
     return new RequestResponse(response.statusCode, responseData);
