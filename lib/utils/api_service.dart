@@ -2,9 +2,12 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:intl/intl.dart';
+import 'package:life_history_mobile/models/activity.dart';
+import 'package:life_history_mobile/models/activity_type.dart';
 import 'package:life_history_mobile/models/authenticate_result.dart';
 import 'package:life_history_mobile/models/day.dart';
 import 'package:life_history_mobile/models/login_request.dart';
+import 'package:life_history_mobile/utils/credentials_manager.dart';
 import 'package:life_history_mobile/utils/request_assistant.dart';
 
 class ApiService {
@@ -14,7 +17,11 @@ class ApiService {
     return "$_apiUrl$urlPart";
   }
 
-  static Future<bool> login(String username, String password) async {
+  final CredentialProvider credentialProvider;
+
+  ApiService(this.credentialProvider);
+
+  Future<bool> login(String username, String password) async {
     LoginRequest loginRequest =
         new LoginRequest(username: username, password: password);
 
@@ -30,17 +37,104 @@ class ApiService {
     return false;
   }
 
-  static Future<Day> getDay(DateTime date) async {
-    assert(date != null);
+  Future<Day> getDayWithDate(DateTime date) async {
+    return _getDay(date: date);
+  }
 
-    final DateFormat dateTimeFormatter = new DateFormat('yyyy-MM-dd');
-    final getUrl = "${_getFullUrl("days")}/${dateTimeFormatter.format(date)}";
+  Future<Day> getDayWithId(int id) async {
+    return _getDay(dayId: id);
+  }
 
+  Future<Day> _getDay({DateTime date, int dayId}) async {
+    assert(date != null || dayId != null);
+
+    var urlParameter;
+
+    if (date != null) {
+      final DateFormat dateTimeFormatter = new DateFormat('yyyy-MM-dd');
+      urlParameter = dateTimeFormatter.format(date);
+    } else {
+      urlParameter = dayId.toString();
+    }
+
+    final getUrl = "${_getFullUrl("days")}/$urlParameter";
+
+    Credential credential = await credentialProvider.getCredential();
     final requestResponse = await RequestAssistant.executeRequest(
-        HttpMethod.get, getUrl, null, credentials: new HttpClientBasicCredentials("test_account", "test1234"));
+        HttpMethod.get, getUrl, null,
+        credentials: new HttpClientBasicCredentials(
+            credential.username, credential.password));
 
     if (requestResponse.statusCode == 200) {
       return new Day.fromJson(requestResponse.data);
+    }
+
+    return null;
+  }
+
+  Future<List<ActivityType>> getActivityTypes() async {
+    Credential credential = await credentialProvider.getCredential();
+    final requestResponse = await RequestAssistant.executeRequest(
+        HttpMethod.get, _getFullUrl("activity_types"), null,
+        credentials: new HttpClientBasicCredentials(
+            credential.username, credential.password));
+
+    if (requestResponse.statusCode == 200) {
+      return (requestResponse.data as List)
+          .map((e) => e == null
+              ? null
+              : new ActivityType.fromJson(e as Map<String, dynamic>))
+          .toList();
+    }
+
+    return null;
+  }
+
+  Future<ActivityType> getActivityType(int activityTypeId) async {
+    final getUrl = "${_getFullUrl("activity_types")}/$activityTypeId";
+
+    Credential credential = await credentialProvider.getCredential();
+    final requestResponse = await RequestAssistant.executeRequest(
+        HttpMethod.get, getUrl, null,
+        credentials: new HttpClientBasicCredentials(
+            credential.username, credential.password));
+
+    if (requestResponse.statusCode == 200) {
+      return new ActivityType.fromJson(requestResponse.data);
+    }
+
+    return null;
+  }
+
+  Future<List<Activity>> getActivities() async {
+    Credential credential = await credentialProvider.getCredential();
+    final requestResponse = await RequestAssistant.executeRequest(
+        HttpMethod.get, _getFullUrl("activities"), null,
+        credentials: new HttpClientBasicCredentials(
+            credential.username, credential.password));
+
+    if (requestResponse.statusCode == 200) {
+      return (requestResponse.data as List)
+          .map((e) => e == null
+          ? null
+          : new Activity.fromJson(e as Map<String, dynamic>))
+          .toList();
+    }
+
+    return null;
+  }
+
+  Future<Activity> getActivity(int activityId) async {
+    final getUrl = "${_getFullUrl("activities")}/$activityId";
+
+    Credential credential = await credentialProvider.getCredential();
+    final requestResponse = await RequestAssistant.executeRequest(
+        HttpMethod.get, getUrl, null,
+        credentials: new HttpClientBasicCredentials(
+            credential.username, credential.password));
+
+    if (requestResponse.statusCode == 200) {
+      return new Activity.fromJson(requestResponse.data);
     }
 
     return null;

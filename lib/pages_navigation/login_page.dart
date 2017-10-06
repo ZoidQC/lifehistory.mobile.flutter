@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:life_history_mobile/utils/api_service.dart';
+import 'package:life_history_mobile/utils/credentials_manager.dart';
 
 class LoginPage extends StatelessWidget {
   _testHttpCall(BuildContext context, String username, String password) {
-    ApiService.login(username, password).then((isLoginSuccessful) {
+    final apiService = new ApiService(new SharedPreferencesCredentialProvider());
+    apiService.login(username, password).then((isLoginSuccessful) {
       showDialog(
         context: context,
         child: new AlertDialog(
