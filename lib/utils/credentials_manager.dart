@@ -20,7 +20,8 @@ class Credential {
   Credential(this.username, this.password);
 
   Credential.fromEncodedValue(String encodedValue) {
-    final decodedValue = new Base64Decoder().convert(encodedValue).toString();
+    final decodedValueBytes = new Base64Decoder().convert(encodedValue);
+    final decodedValue = new String.fromCharCodes(decodedValueBytes);
     final splitValues = decodedValue.split(':');
     assert(splitValues.length == 2);
 
